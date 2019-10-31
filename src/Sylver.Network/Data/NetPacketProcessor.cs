@@ -15,7 +15,7 @@ namespace Sylver.Network.Data
         public bool IncludeHeader => false;
 
         /// <inheritdoc />
-        public int GetMessageLength(byte[] buffer)
+        public int GetMessageLength(byte[] buffer, int bytesTransferred)
         {
             return BitConverter.ToInt32(BitConverter.IsLittleEndian
                 ? buffer.Take(this.HeaderSize).ToArray()

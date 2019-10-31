@@ -19,8 +19,9 @@
         /// Gets the packet message length.
         /// </summary>
         /// <param name="buffer">Header buffer.</param>
+        /// <param name="bytesTransferred">The transferred bytes count in the whole tcp packet</param>
         /// <returns>Packet message data length.</returns>
-        int GetMessageLength(byte[] buffer);
+        int GetMessageLength(byte[] buffer, int bytesTransferred);
 
         /// <summary>
         /// Creates a new <see cref="INetPacketStream"/> packet instance.

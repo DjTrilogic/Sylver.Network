@@ -33,6 +33,11 @@ namespace Sylver.Network.Data.Internal
             {
                 int headerSize = this.PacketProcessor.HeaderSize;
 
+                if (headerSize == 0)
+                {
+                    token.HeaderData = Array.Empty<byte>();
+                }
+
                 if (token.ReceivedHeaderBytesCount < headerSize)
                 {
                     if (token.HeaderData == null)
@@ -51,7 +56,7 @@ namespace Sylver.Network.Data.Internal
                 if (token.ReceivedHeaderBytesCount == headerSize && token.HeaderData != null)
                 {
                     if (!token.MessageSize.HasValue)
-                        token.MessageSize = this.PacketProcessor.GetMessageLength(token.HeaderData);
+                        token.MessageSize = this.PacketProcessor.GetMessageLength(token.HeaderData, bytesTransfered);
                     if (token.MessageSize.Value < 0)
                         throw new InvalidOperationException("Message size cannot be smaller than zero.");
 
